@@ -1,4 +1,4 @@
-package com.example.weatherapp.model
+package com.example.weatherapp.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -15,16 +15,16 @@ object RetrofitClient {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-    private  val httpClient = OkHttpClient.Builder()
+    private val httpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
 
-    private  val json = Json {
+    private val json = Json {
         ignoreUnknownKeys = true
         isLenient = true
     }
 
-    @OptIn (ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class)
     val retrofitService: WeatherApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
